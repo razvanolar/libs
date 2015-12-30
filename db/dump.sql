@@ -26,6 +26,7 @@ CREATE TABLE `cursuri` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `denumire` varchar(100) DEFAULT NULL,
   `ref_profesor` int(11) DEFAULT NULL,
+  `enrolment_key` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `ref_profesor` (`ref_profesor`),
   CONSTRAINT `cursuri_ibfk_1` FOREIGN KEY (`ref_profesor`) REFERENCES `utilizatori` (`id`)
@@ -38,7 +39,7 @@ CREATE TABLE `cursuri` (
 
 LOCK TABLES `cursuri` WRITE;
 /*!40000 ALTER TABLE `cursuri` DISABLE KEYS */;
-INSERT INTO `cursuri` VALUES (1,'curs3',2),(2,'curs2',2);
+INSERT INTO `cursuri` VALUES (1,'FP',2,''),(2,'Disciplina2',2,'');
 /*!40000 ALTER TABLE `cursuri` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -162,7 +163,7 @@ CREATE TABLE `studenti_inscrisi` (
   `ref_student` int(11) DEFAULT NULL,
   `ref_curs` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `ref_student` (`ref_student`),
+  UNIQUE KEY `ref_student` (`ref_student`,`ref_curs`),
   KEY `ref_curs` (`ref_curs`),
   CONSTRAINT `studenti_inscrisi_ibfk_1` FOREIGN KEY (`ref_student`) REFERENCES `utilizatori` (`id`),
   CONSTRAINT `studenti_inscrisi_ibfk_2` FOREIGN KEY (`ref_curs`) REFERENCES `cursuri` (`id`)
@@ -306,4 +307,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-01 11:39:53
+-- Dump completed on 2015-12-30 21:44:06
