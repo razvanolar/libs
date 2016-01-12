@@ -195,6 +195,7 @@ CREATE TABLE `teme` (
   `timp_start` datetime DEFAULT NULL,
   `timp_sfarsit` datetime DEFAULT NULL,
   `ref_curs` int(11) DEFAULT NULL,
+  `punctaj` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `ref_curs` (`ref_curs`),
   CONSTRAINT `teme_ibfk_1` FOREIGN KEY (`ref_curs`) REFERENCES `cursuri` (`id`)
